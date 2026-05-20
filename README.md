@@ -1,12 +1,21 @@
 # Cadbury
 
-**Cadbury** is a local-first personal assistant that runs on your Mac. You chat with it in the terminal; it can search **only the folders you allow**, cite its sources, and log what it did. Your notes and prompts stay on your machine by default.
+> **Your local-first personal assistant.** Searches only what you allow. Stays on your Mac.
 
-Think of it as a small, permission-conscious buddy-not a cloud chatbot clone.
+![Status](https://img.shields.io/badge/status-in%20development-yellow)
+![Python](https://img.shields.io/badge/python-3.11-blue)
+![Ollama](https://img.shields.io/badge/Ollama-local%20LLM-black)
+![License](https://img.shields.io/badge/license-MIT-green)
 
-<p align="center">
-  <code>start cadbury</code>
-</p>
+---
+
+## What It Does
+
+Cadbury is a local-first personal assistant that runs on your Mac. You chat with it in the terminal. It searches only the folders you allow, cites its sources, and logs everything it does. Your notes and prompts stay on your machine by default.
+
+```bash
+start cadbury
+```
 
 ---
 
@@ -24,26 +33,36 @@ Cadbury is for people who want **control and privacy** first, and are fine tradi
 
 ---
 
-## Why build this when ChatGPT, Claude, and Gemini already exist?
+## Why Build This?
 
-Frontier cloud assistants are excellent at general reasoning, writing, and coding. This project is **not** trying to beat them on a leaderboard. It exists because they solve a **different problem** than the one I cared about.
+Frontier cloud assistants are excellent at general reasoning, writing, and coding. This project is not trying to beat them on a leaderboard. It exists because they solve a different problem than the one I cared about.
 
-**1. Learning how assistants actually work**  
-Using ChatGPT is like driving a car. Building Cadbury is like opening the hood: local inference (Ollama), retrieval, tool permissions, audit logs, and config-driven boundaries. That exposure is the main goal—not shipping a commercial competitor.
+**1. Learning how assistants actually work**
+Using ChatGPT is like driving a car. Building Cadbury is like opening the hood: local inference (Ollama), retrieval, tool permissions, audit logs, and config-driven boundaries. That exposure is the main goal, not shipping a commercial competitor.
 
-**2. Privacy for real personal data**  
-Course folders, transcripts, work notes, and drafts are sensitive. With Cadbury, prompts and retrieved file text stay on **my Mac** by default. Cloud tools can be careful with policy, but I cannot **see or change** their enforcement code. Here I can.
+**2. Privacy for real personal data**
+Course folders, transcripts, work notes, and drafts are sensitive. With Cadbury, prompts and retrieved file text stay on my Mac by default. Cloud tools can be careful with policy, but I cannot see or change their enforcement code. Here I can.
 
-**3. Permissions I can enforce in code**  
-I wanted rules that are explicit and boring: only certain folders, approval before search, an audit trail, no silent web or calendar access. Cadbury’s policy layer is small on purpose—it is the product.
+**3. Permissions I can enforce in code**
+I wanted rules that are explicit and boring: only certain folders, approval before search, an audit trail, no silent web or calendar access. Cadbury's policy layer is small on purpose. It is the product.
 
-**4. A buddy I own and can share safely**  
-Colleagues can clone the repo, run their own Ollama model, and use **their** allowlisted paths. No shared cloud account, no commingled data.
+**4. A tool I own and can share safely**
+Colleagues can clone the repo, run their own Ollama model, and use their own allowlisted paths. No shared cloud account, no commingled data.
 
-**5. Honest tradeoff**  
-Cadbury uses a ~7B local model, so it will not match Claude or GPT-4 on hard tasks. That is acceptable: the value is **control, citations from local files, and learning**—not replacing every cloud agent.
+**5. Honest tradeoff**
+Cadbury uses a ~7B local model, so it will not match Claude or GPT-4 on hard tasks. That is acceptable. The value is control, citations from local files, and learning, not replacing every cloud agent.
 
-**When I still use cloud AI:** open-ended research, heavy coding reviews, or tasks where maximum model quality matters. Cadbury and cloud tools can coexist.
+When I still use cloud AI: open-ended research, heavy coding reviews, or tasks where maximum model quality matters. Cadbury and cloud tools coexist fine.
+
+---
+
+## The Story Behind This
+
+I built Cadbury because I kept feeling uneasy about pasting personal notes, course transcripts, and work drafts into cloud chat interfaces. I did not want to stop using AI assistance for my own files. I just wanted to know exactly where my data was going.
+
+So I built something where the answer is simple: it stays on my Mac.
+
+Every part of this system is something I actually use. The allowlisted paths, the audit log, the approval prompts before reading notes. It is not a polished product. It is a tool I trust because I can read every line of it.
 
 ---
 
@@ -51,9 +70,9 @@ Cadbury uses a ~7B local model, so it will not match Claude or GPT-4 on hard tas
 
 - **Local chat** via [Ollama](https://ollama.com) (default: Qwen 2.5 7B)
 - **Allowlisted file search** - `.md`, `.txt`, `.pdf`, `.docx`, and more
-- **Semantic search** - `cadbury index` builds an embedding index for better “meaning” matches
-- **Source citations** - answers can include `Sources:` with file paths
-- **Interactive session** - `start cadbury`, with `/help`, `/strict`, `/approve`, etc.
+- **Semantic search** - `cadbury index` builds an embedding index for better meaning matches
+- **Source citations** - answers include `Sources:` with file paths
+- **Interactive session** - `start cadbury`, with `/help`, `/strict`, `/approve`, and more
 - **Security by default** - tools denied unless configured; optional approval before reading notes
 - **Audit log** - `~/.cadbury/audit.log`
 
@@ -63,15 +82,15 @@ Cadbury uses a ~7B local model, so it will not match Claude or GPT-4 on hard tas
 
 ## Requirements
 
-- **macOS** (Apple Silicon recommended, e.g. M-series Mac)
+- **macOS** (Apple Silicon recommended, M-series)
 - **Python 3.11+**
 - **Ollama** installed and running
-- **~10–30 GB** free disk (LLM + optional index + embeddings)
+- **10 to 30 GB** free disk (LLM + optional index + embeddings)
 - **16 GB RAM** recommended for comfortable 7B model use
 
 ---
 
-## Quick start
+## Quick Start
 
 ### 1. Install Ollama and pull a model
 
@@ -99,7 +118,7 @@ pip install -e .
 cp config.example.yaml config.yaml
 ```
 
-Edit `config.yaml` and set **your** allowed folder(s):
+Edit `config.yaml` and set your allowed folders:
 
 ```yaml
 allowed_paths:
@@ -138,7 +157,7 @@ On first use you may be asked to approve note access (`/approve` or answer `y` w
 
 ---
 
-## Interactive commands
+## Interactive Commands
 
 Inside `start cadbury`:
 
@@ -159,10 +178,10 @@ Inside `start cadbury`:
 
 Cadbury loads config from (first match wins):
 
-1. `~/.cadbury/config.yaml` - **recommended** for personal machines  
-2. `./config.yaml` - project-local fallback  
+1. `~/.cadbury/config.yaml` - recommended for personal machines
+2. `./config.yaml` - project-local fallback
 
-Copy from `config.example.yaml`. **Do not commit** your real `config.yaml` (it may contain personal paths).
+Copy from `config.example.yaml`. Do not commit your real `config.yaml` (it may contain personal paths).
 
 Key options:
 
@@ -176,7 +195,7 @@ Key options:
 
 ---
 
-## How it works (high level)
+## How It Works
 
 ```mermaid
 flowchart LR
@@ -191,22 +210,22 @@ flowchart LR
   CLI --> You
 ```
 
-The LLM never opens files directly. Your code searches allowlisted paths, passes text as context, and the model answers from that context.
+The LLM never opens files directly. Cadbury searches allowlisted paths, passes text as context, and the model answers from that context.
 
 ---
 
 ## Security
 
-- **Deny by default** for tools (calendar, web, etc. are stubs unless enabled).
-- **Allowlist only** - no whole-disk search.
-- **Audit trail** - `~/.cadbury/audit.log`.
-- **No telemetry** built in.
+- **Deny by default** for tools (calendar, web, etc. are stubs unless enabled)
+- **Allowlist only** - no whole-disk search
+- **Audit trail** - `~/.cadbury/audit.log`
+- **No telemetry** built in
 
 Details: [SECURITY.md](SECURITY.md).
 
 ---
 
-## Project layout
+## Project Layout
 
 ```text
 cadbury/
@@ -230,16 +249,16 @@ cadbury/
 
 ---
 
-## Sharing with others
+## Sharing With Others
 
-1. Push the repo **without** `config.yaml` or personal data.  
-2. Each person runs `./install.sh` and creates their own `~/.cadbury/config.yaml`.  
-3. Each person runs `ollama pull` and `cadbury index` on **their** machine.  
+1. Push the repo without `config.yaml` or personal data.
+2. Each person runs `./install.sh` and creates their own `~/.cadbury/config.yaml`.
+3. Each person runs `ollama pull` and `cadbury index` on their own machine.
 4. Their files never leave their Mac unless they enable future web tools.
 
 ---
 
-## Before you push to Git (security checklist)
+## Before You Push to Git
 
 Run from the project folder:
 
@@ -248,7 +267,7 @@ git status
 git check-ignore -v config.yaml DEVLOG.private.md .venv 2>/dev/null
 ```
 
-**Must never be committed:**
+Files that must never be committed:
 
 | Item | Why | Protected by |
 |------|-----|----------------|
@@ -256,39 +275,40 @@ git check-ignore -v config.yaml DEVLOG.private.md .venv 2>/dev/null
 | `DEVLOG.private.md` | Personal dev notes, errors, paths | `.gitignore` |
 | `.venv/` | Local environment | `.gitignore` |
 | `.env` / API keys | Secrets if added later | `.gitignore` |
-| `~/.cadbury/audit.log` | May contain prompts & paths | Lives outside repo |
+| `~/.cadbury/audit.log` | May contain prompts and paths | Lives outside repo |
 | `~/.cadbury/rag/` | Index of your file text | Lives outside repo |
 
-**Safe to commit:** `README.md`, `SECURITY.md`, `config.example.yaml` (generic paths only), `src/`, `install.sh`, `pyproject.toml`.
+Safe to commit: `README.md`, `SECURITY.md`, `config.example.yaml` (generic paths only), `src/`, `install.sh`, `pyproject.toml`.
 
-**Quick scan for leaks before push:**
+Quick scan for leaks before pushing:
 
 ```bash
 grep -rE "atharva|UCSD|/Users/|API_KEY|password|secret" --include="*.py" --include="*.yaml" --include="*.md" . \
   --exclude-dir=.venv --exclude="*.private.md" --exclude="config.yaml" || echo "No obvious leaks in tracked files"
 ```
 
-Use `config.example.yaml` with placeholder paths only—never your real directories.
+Use `config.example.yaml` with placeholder paths only, never your real directories.
 
 ---
 
 ## Roadmap
 
-- [x] v0.1 - Local chat, allowlisted search, policy, audit, interactive CLI  
-- [x] v0.2 - Semantic index (`cadbury index`), `start cadbury`  
-- [ ] Calendar read-only (optional)  
-- [ ] Web search toggle (optional, off by default)  
-- [ ] Voice (optional; disabled by default)  
-- [ ] macOS app / easier install for non-developers  
+- [x] v0.1 - Local chat, allowlisted search, policy, audit, interactive CLI
+- [x] v0.2 - Semantic index (`cadbury index`), `start cadbury`
+- [ ] Calendar read-only (optional)
+- [ ] Web search toggle (optional, off by default)
+- [ ] Voice (optional; disabled by default)
+- [ ] macOS app / easier install for non-developers
 
 ---
 
 ## License
 
-Add your license here (e.g. MIT) if you publish the repo.
+MIT License. See [LICENSE](LICENSE) for details.
 
 ---
 
 ## Author
 
-Built as a learning project for local LLMs, retrieval, and permission-safe agents.
+**Atharva Hirulkar** - MS Data Science, UC San Diego  
+[GitHub](https://github.com/atharvahirulkar) · [LinkedIn](https://linkedin.com/in/atharva-hirulkar)
