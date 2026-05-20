@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cadbury"
+version = "0.1.0"
+description = "Local-first personal assistant with strict permissions"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "httpx>=0.27.0",
+  "python-dotenv>=1.0.1",
+  "PyYAML>=6.0.2",
+  "pypdf>=4.2.0",
+  "python-docx>=1.1.2",
+  "sentence-transformers>=3.0.0",
+  "numpy>=1.26.0",
+  "faster-whisper>=1.0.0",
+  "sounddevice>=0.5.0",
+  "soundfile>=0.12.0",
+]
+
+[project.scripts]
+cadbury = "src.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]

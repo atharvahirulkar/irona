@@ -1,0 +1,26 @@
+# Copy to config.yaml (or ~/.cadbury/config.yaml) and edit paths.
+
+model_name: "qwen2.5:7b-instruct"
+ollama_url: "http://localhost:11434/api/chat"
+
+# Only these folders can be searched (notes, docs, projects, etc.).
+allowed_paths:
+  - "/path/to/your/folder"
+
+# Prompt before using tools unless /approve was used in interactive mode.
+require_tool_approval: true
+
+# If true, interactive mode starts in strict mode.
+strict_mode_default: false
+
+# Disabled by default in v0.1 (stubs only).
+enabled_tools: []
+
+# Semantic search (run `cadbury index` after changing paths).
+use_embeddings: true
+embedding_model: "all-MiniLM-L6-v2"
+
+# Voice (optional; set true after: pip install faster-whisper sounddevice soundfile)
+voice_enabled: false
+voice_stt_model: "base.en"
+voice_record_seconds: 6

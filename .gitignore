@@ -1,0 +1,35 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# OS
+.DS_Store
+
+# Secrets & personal runtime (never commit)
+config.yaml
+.env
+.env.*
+*.env
+secrets.yaml
+credentials.json
+*.pem
+*.key
+
+# Private notes & logs
+DEVLOG.private.md
+*.private.md
+audit.log
+*.log
+
+# Local indexes (stored in ~/.cadbury by default; ignore if copied here)
+rag/
+*.index
+
+# Editor
+.idea/
+.vscode/

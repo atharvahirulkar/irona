@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Usage: start cadbury
+set -euo pipefail
+
+if [[ "${1:-}" != "cadbury" ]]; then
+  echo "Usage: start cadbury"
+  exit 1
+fi
+
+CADBURY_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$CADBURY_ROOT"
+
+if [[ ! -d ".venv" ]]; then
+  echo "Cadbury venv missing. Run ./install.sh first."
+  exit 1
+fi
+
+# shellcheck disable=SC1091
+source ".venv/bin/activate"
+shift
+exec cadbury start "$@"
