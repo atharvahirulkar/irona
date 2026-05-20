@@ -280,13 +280,6 @@ Files that must never be committed:
 
 Safe to commit: `README.md`, `SECURITY.md`, `config.example.yaml` (generic paths only), `src/`, `install.sh`, `pyproject.toml`.
 
-Quick scan for leaks before pushing:
-
-```bash
-grep -rE "atharva|UCSD|/Users/|API_KEY|password|secret" --include="*.py" --include="*.yaml" --include="*.md" . \
-  --exclude-dir=.venv --exclude="*.private.md" --exclude="config.yaml" || echo "No obvious leaks in tracked files"
-```
-
 Use `config.example.yaml` with placeholder paths only, never your real directories.
 
 ---
