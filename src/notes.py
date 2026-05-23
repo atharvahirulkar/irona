@@ -28,6 +28,31 @@ MAX_RESULTS = 5
 MAX_FILE_BYTES = 5_000_000
 MAX_CONTEXT_CHARS = 3500
 
+# Skip noisy trees when allowlisting broad folders (e.g. a whole projects directory).
+SKIP_DIR_NAMES = frozenset({
+    ".git",
+    ".venv",
+    "venv",
+    "node_modules",
+    "__pycache__",
+    "site-packages",
+    ".cadbury",
+    "dist",
+    "build",
+    ".egg-info",
+    ".tox",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+    ".cursor",
+    ".idea",
+    ".vscode",
+    "rag",
+})
+
+# Suffixes worth indexing/searching (excludes .js bundles under venvs, etc.).
+INDEXABLE_SUFFIXES = (TEXT_SUFFIXES - {".js", ".html", ".css"}) | {PDF_SUFFIX, DOCX_SUFFIX}
+
 
 @dataclass(frozen=True)
 class NoteMatch:
@@ -119,9 +144,16 @@ def _iter_candidate_files(
 
     candidates: list[Path] = []
     for root in allowed_paths:
+        if not root.exists():
+            continue
         for file_path in root.rglob("*"):
-            if file_path.is_file():
-                candidates.append(file_path)
+            if not file_path.is_file():
+                continue
+            if any(part in SKIP_DIR_NAMES for part in file_path.parts):
+                continue
+            if file_path.suffix.lower() not in INDEXABLE_SUFFIXES:
+                continue
+            candidates.append(file_path)
     return candidates
 
 

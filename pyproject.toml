@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cadbury"
-version = "0.1.0"
+version = "0.4.0"
 description = "Local-first personal assistant with strict permissions"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -19,6 +19,7 @@ dependencies = [
   "faster-whisper>=1.0.0",
   "sounddevice>=0.5.0",
   "soundfile>=0.12.0",
+  "duckduckgo-search>=6.3.0",
 ]
 
 [project.scripts]

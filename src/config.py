@@ -29,6 +29,7 @@ class CadburyConfig:
     voice_enabled: bool
     voice_stt_model: str
     voice_record_seconds: int
+    whatsapp_allowed_phones: frozenset[str]
 
 
 @dataclass(frozen=True)
@@ -42,7 +43,11 @@ def _coerce_paths(raw_paths: list[Any]) -> list[Path]:
     for raw in raw_paths:
         if not isinstance(raw, str):
             continue
-        candidate = Path(raw).expanduser().resolve()
+        candidate = Path(raw).expanduser()
+        if not candidate.is_absolute():
+            candidate = (PROJECT_ROOT / candidate).resolve()
+        else:
+            candidate = candidate.resolve()
         if candidate.exists() and candidate.is_dir():
             paths.append(candidate)
     return paths
@@ -60,6 +65,14 @@ def _parse_config(data: dict[str, Any]) -> CadburyConfig:
         raw_tools = []
     enabled_tools = frozenset(str(t) for t in raw_tools)
 
+    raw_phones = data.get("whatsapp_allowed_phones", [])
+    if not isinstance(raw_phones, list):
+        raw_phones = []
+    whatsapp_allowed_phones = frozenset(
+        "".join(ch for ch in str(p) if ch.isdigit()) for p in raw_phones
+    )
+    whatsapp_allowed_phones = frozenset(p for p in whatsapp_allowed_phones if p)
+
     return CadburyConfig(
         model_name=str(data.get("model_name", DEFAULT_MODEL)),
         ollama_url=str(data.get("ollama_url", DEFAULT_OLLAMA_URL)),
@@ -72,6 +85,7 @@ def _parse_config(data: dict[str, Any]) -> CadburyConfig:
         voice_enabled=bool(data.get("voice_enabled", False)),
         voice_stt_model=str(data.get("voice_stt_model", "base.en")),
         voice_record_seconds=int(data.get("voice_record_seconds", 6)),
+        whatsapp_allowed_phones=whatsapp_allowed_phones,
     )
 
 

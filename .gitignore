@@ -23,12 +23,28 @@ credentials.json
 # Private notes & logs
 DEVLOG.private.md
 *.private.md
+PUSH_CHECKLIST.md
 audit.log
 *.log
 
 # Local indexes (stored in ~/.cadbury by default; ignore if copied here)
 rag/
 *.index
+
+# Personal user workspace (see user/README.md)
+user/corpus/*
+!user/corpus/.gitkeep
+user/questions.jsonl
+user/*.local.yaml
+
+# Legacy personal eval location
+eval/questions.jsonl
+
+# Eval run output (not source)
+eval/results/*.json
+eval/results/*.md
+eval/results/generation/
+!eval/results/.gitkeep
 
 # Editor
 .idea/

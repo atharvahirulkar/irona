@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -79,7 +80,14 @@ def can_use_tool(
     )
 
 
+def auto_approve_tools() -> bool:
+    """Non-interactive runs (eval, CI) skip approval prompts when set."""
+    return os.environ.get("CADBURY_AUTO_APPROVE", "").strip() in {"1", "true", "yes"}
+
+
 def request_tool_approval(tool_name: str, *, interactive: bool = True) -> bool:
+    if auto_approve_tools():
+        return True
     if not interactive:
         return False
     prompt = f"Allow tool '{tool_name}' for this session? [y/N]: "

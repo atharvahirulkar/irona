@@ -3,9 +3,16 @@
 model_name: "qwen2.5:7b-instruct"
 ollama_url: "http://localhost:11434/api/chat"
 
-# Only these folders can be searched (notes, docs, projects, etc.).
+# Folders Cadbury may search. Use ONE project folder you own — not your whole disk.
+#
+# Option A — documents in repo (contents of user/corpus/ are gitignored):
+#   - "./user/corpus"
+# Option B — external folder (recommended):
+#   - "/path/to/your/documents"
+#
+# Avoid: home directory, parent folders with many code projects (slow; skips venvs).
 allowed_paths:
-  - "/path/to/your/folder"
+  - "./user/corpus"
 
 # Prompt before using tools unless /approve was used in interactive mode.
 require_tool_approval: true
@@ -13,14 +20,23 @@ require_tool_approval: true
 # If true, interactive mode starts in strict mode.
 strict_mode_default: false
 
-# Disabled by default in v0.1 (stubs only).
+# Optional tools (off by default). Example:
+# enabled_tools:
+#   - calendar.read
+#   - web.search
+#   - whatsapp.draft   # opens WhatsApp with draft — YOU tap Send (no auto-send)
 enabled_tools: []
+
+# Optional: restrict whatsapp.draft to these numbers (digits only). Empty = any.
+# whatsapp_allowed_phones:
+#   - "14155551234"
 
 # Semantic search (run `cadbury index` after changing paths).
 use_embeddings: true
 embedding_model: "all-MiniLM-L6-v2"
 
 # Voice (optional; set true after: pip install faster-whisper sounddevice soundfile)
+# Interactive: /listen then speak; /voice on for spoken replies (macOS say)
 voice_enabled: false
 voice_stt_model: "base.en"
 voice_record_seconds: 6

@@ -1,0 +1,7 @@
+{"id": "project-name", "question": "What is the sample project called?", "expected_sources": ["README.md"], "expected_terms": ["sample", "project"], "expected_answer_terms": ["sample", "project"], "notes": "Demo fixture only — see eval/fixtures/corpus/"}
+{"id": "release-version", "question": "What version is listed in the release notes?", "expected_sources": ["README.md"], "expected_terms": ["0.4"], "expected_answer_terms": ["0.4"], "notes": ""}
+{"id": "deadline", "question": "When is the project documentation deadline?", "expected_sources": ["meeting-notes.md"], "expected_terms": ["deadline", "2026"], "expected_answer_terms": ["2026-06-15", "june"], "notes": ""}
+{"id": "eval-command", "question": "Which command runs retrieval metrics?", "expected_sources": ["api-overview.md"], "expected_terms": ["eval"], "expected_answer_terms": ["eval"], "notes": ""}
+{"id": "auth-storage", "question": "Where are session tokens stored?", "expected_sources": ["api-overview.md"], "expected_terms": [".cadbury"], "expected_answer_terms": [".cadbury"], "notes": ""}
+{"id": "index-command", "question": "How do I build the embedding index?", "expected_sources": ["api-overview.md", "meeting-notes.md"], "expected_terms": ["index"], "expected_answer_terms": ["index"], "notes": ""}
+{"id": "paraphrase-timeline", "question": "What is the documentation due date?", "expected_sources": ["meeting-notes.md"], "expected_terms": ["documentation"], "expected_answer_terms": ["2026"], "notes": "Paraphrase-style query for semantic eval."}

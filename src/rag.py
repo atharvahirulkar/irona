@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import json
+import time
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 
+import httpx
 import numpy as np
 
 from src.notes import (
@@ -29,6 +31,10 @@ DEFAULT_EMBED_MODEL = "all-MiniLM-L6-v2"
 _MODEL = None
 
 
+class EmbeddingModelError(RuntimeError):
+    """Embedding model could not be loaded (missing cache or network failure)."""
+
+
 @dataclass(frozen=True)
 class ChunkRecord:
     path: str
@@ -38,13 +44,50 @@ class ChunkRecord:
     embedding: list[float]
 
 
-def _load_model(model_name: str):
+def _load_model(model_name: str, *, allow_download: bool = True):
+    """Load the sentence-transformers model, preferring the local HF cache."""
     global _MODEL
-    if _MODEL is None:
-        from sentence_transformers import SentenceTransformer
+    if _MODEL is not None:
+        return _MODEL
 
-        _MODEL = SentenceTransformer(model_name)
-    return _MODEL
+    from sentence_transformers import SentenceTransformer
+
+    strategies: list[dict[str, bool]] = [{"local_files_only": True}]
+    if allow_download:
+        strategies.append({"local_files_only": False})
+
+    last_exc: Exception | None = None
+    transient = (
+        httpx.RemoteProtocolError,
+        httpx.ConnectError,
+        httpx.ReadTimeout,
+        httpx.TimeoutException,
+    )
+
+    for kwargs in strategies:
+        attempts = 3 if not kwargs["local_files_only"] else 1
+        for attempt in range(attempts):
+            try:
+                _MODEL = SentenceTransformer(model_name, **kwargs)
+                return _MODEL
+            except Exception as exc:
+                last_exc = exc
+                if kwargs["local_files_only"]:
+                    break
+                if isinstance(exc, transient) and attempt < attempts - 1:
+                    time.sleep(0.5 * (attempt + 1))
+                    continue
+                break
+
+    hint = (
+        "Model is cached locally but could not be opened."
+        if not allow_download
+        else "Run once while online: cadbury index (downloads the embedding model)."
+    )
+    raise EmbeddingModelError(
+        f"Could not load embedding model '{model_name}'. {hint} "
+        f"Details: {last_exc}"
+    ) from last_exc
 
 
 def _chunk_text(text: str) -> list[str]:
@@ -69,7 +112,10 @@ def index_exists() -> bool:
 
 
 def build_index(allowed_paths: list[Path], model_name: str = DEFAULT_EMBED_MODEL) -> str:
-    model = _load_model(model_name)
+    try:
+        model = _load_model(model_name, allow_download=True)
+    except EmbeddingModelError as exc:
+        return str(exc)
     records: list[ChunkRecord] = []
     files_seen = 0
 
@@ -136,7 +182,13 @@ def semantic_search(
         return []
 
     meta = json.loads(INDEX_META_PATH.read_text(encoding="utf-8"))
-    model = _load_model(meta.get("model", DEFAULT_EMBED_MODEL))
+    try:
+        model = _load_model(
+            meta.get("model", DEFAULT_EMBED_MODEL),
+            allow_download=False,
+        )
+    except EmbeddingModelError:
+        return []
     chunks = _load_chunks()
 
     if restrict_files:
