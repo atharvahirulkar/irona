@@ -1,6 +1,6 @@
 # Cadbury
 
-**Cadbury** is a **permissioned, auditable RAG agent** for macOS: local inference (Ollama), measured retrieval over allowlisted files, and an explicit policy layer. It is a learning lab for LLMs, RAG, and edge ML infrastructure—not a cloud chatbot clone.
+**Cadbury** is a **permissioned, auditable RAG agent** for macOS: local inference (Ollama), measured retrieval over allowlisted files, and an explicit policy layer. It is a learning lab for LLMs, RAG, and edge ML infrastructure-not a cloud chatbot clone.
 
 > **Thesis:** Most local-RAG tutorials stop at “it answers.” Cadbury measures **whether the right file is retrieved**, logs **what tools ran**, and documents **what breaks on 16GB RAM** with pre-trained models. See [docs/THE_LOCAL_GAP.md](docs/THE_LOCAL_GAP.md).
 
@@ -31,19 +31,19 @@ Cadbury is for people who want **control and privacy** first, and are fine tradi
 Frontier cloud assistants are excellent at general reasoning, writing, and coding. This project is **not** trying to beat them on a leaderboard. It exists because they solve a **different problem** than the one I cared about.
 
 **1. Learning how assistants actually work**  
-Using ChatGPT is like driving a car. Building Cadbury is like opening the hood: local inference (Ollama), retrieval, tool permissions, audit logs, and config-driven boundaries. That exposure is the main goal—not shipping a commercial competitor.
+Using ChatGPT is like driving a car. Building Cadbury is like opening the hood: local inference (Ollama), retrieval, tool permissions, audit logs, and config-driven boundaries. That exposure is the main goal-not shipping a commercial competitor.
 
 **2. Privacy for real personal data**  
 Course folders, transcripts, work notes, and drafts are sensitive. With Cadbury, prompts and retrieved file text stay on **my Mac** by default. Cloud tools can be careful with policy, but I cannot **see or change** their enforcement code. Here I can.
 
 **3. Permissions I can enforce in code**  
-I wanted rules that are explicit and boring: only certain folders, approval before search, an audit trail, no silent web or calendar access. Cadbury’s policy layer is small on purpose—it is the product.
+I wanted rules that are explicit and boring: only certain folders, approval before search, an audit trail, no silent web or calendar access. Cadbury’s policy layer is small on purpose-it is the product.
 
 **4. A buddy I own and can share safely**  
 Colleagues can clone the repo, run their own Ollama model, and use **their** allowlisted paths. No shared cloud account, no commingled data.
 
 **5. Honest tradeoff**  
-Cadbury uses a ~7B local model, so it will not match Claude or GPT-4 on hard tasks. That is acceptable: the value is **control, citations from local files, and learning**—not replacing every cloud agent.
+Cadbury uses a ~7B local model, so it will not match Claude or GPT-4 on hard tasks. That is acceptable: the value is **control, citations from local files, and learning**-not replacing every cloud agent.
 
 **When I still use cloud AI:** open-ended research, heavy coding reviews, or tasks where maximum model quality matters. Cadbury and cloud tools can coexist.
 
@@ -195,8 +195,8 @@ enabled_tools:
   - web.search
 ```
 
-- **calendar.read** — Apple Calendar on macOS (read-only). Grant Calendars access to Terminal/Cursor when prompted.
-- **web.search** — DuckDuckGo over the network. Results are untrusted external content.
+- **calendar.read** - Apple Calendar on macOS (read-only). Grant Calendars access to Terminal/Cursor when prompted.
+- **web.search** - DuckDuckGo over the network. Results are untrusted external content.
 
 In `start cadbury` and `cadbury ask`, Cadbury auto-pulls calendar or web context when your question looks relevant (still permission-gated).
 
@@ -328,13 +328,13 @@ Before push: [PUSH_CHECKLIST.example.md](PUSH_CHECKLIST.example.md) or `./script
 ./scripts/verify-push.sh
 ```
 
-Use `config.example.yaml` with placeholder paths only—never your real directories.
+Use `config.example.yaml` with placeholder paths only-never your real directories.
 
 ---
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT - see [LICENSE](LICENSE).
 
 ---
 
