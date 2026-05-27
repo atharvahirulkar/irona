@@ -332,18 +332,6 @@ Use `config.example.yaml` with placeholder paths only—never your real director
 
 ---
 
-## Roadmap
-
-- [x] v0.1 - Local chat, allowlisted search, policy, audit, interactive CLI  
-- [x] v0.2 - Semantic index (`cadbury index`), calendar/web opt-in  
-- [x] v0.3 - Retrieval eval harness, architecture/trust docs, `src/retrieval.py`  
-- [x] v0.4 - Generation eval (`cadbury eval --generation`), WhatsApp draft, voice UX  
-- [ ] Auto-send messaging (intentionally not planned — see WHATSAPP.md)  
-- [ ] Incremental index rebuild  
-- [ ] macOS menu-bar app (future)  
-
----
-
 ## License
 
 MIT — see [LICENSE](LICENSE).
