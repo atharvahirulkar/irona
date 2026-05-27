@@ -341,3 +341,6 @@ MIT - see [LICENSE](LICENSE).
 ## Author
 
 Built as a learning project for local LLMs, retrieval, and permission-safe agents.
+
+**Atharva Hirulkar** - MS Data Science, UC San Diego
+[GitHub](https://github.com/atharvahirulkar) · [LinkedIn](https://linkedin.com/in/atharva-hirulkar)
