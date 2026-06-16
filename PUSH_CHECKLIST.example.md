@@ -22,9 +22,9 @@ Confirm **none** of these are staged:
 ```bash
 source .venv/bin/activate
 pip install -e .
-cadbury doctor
-cadbury eval --demo
-cadbury version   # should print 0.4.0
+irona doctor
+irona eval --demo
+irona version   # should print 0.4.0
 ```
 
 ## 3. Commit
@@ -32,7 +32,7 @@ cadbury version   # should print 0.4.0
 ```bash
 git add -A
 git status   # read every staged path
-git commit -m "Release Cadbury v0.4: eval harness, user workspace, tools"
+git commit -m "Release Irona v0.4: eval harness, user workspace, tools"
 git push
 ```
 

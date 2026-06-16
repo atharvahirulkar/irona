@@ -1,6 +1,6 @@
-# Cadbury architecture (v0.3)
+# Irona architecture (v0.3)
 
-Cadbury is a **terminal-native agent** with three layers: inference, retrieval, and policy. File and tool access never go through the LLM directly — the Python runtime gathers context, then calls Ollama.
+Irona is a **terminal-native agent** with three layers: inference, retrieval, and policy. File and tool access never go through the LLM directly — the Python runtime gathers context, then calls Ollama.
 
 ---
 
@@ -48,7 +48,7 @@ User input (CLI / interactive)
 | `src/config.py` | YAML: paths, model URL, `enabled_tools`, `use_embeddings` |
 | `src/policy.py` | `can_use_tool`, session grants, `append_audit` |
 | `src/notes.py` | Allowlisted walk, PDF/DOCX/text extract, keyword scoring |
-| `src/rag.py` | Chunk index under `~/.cadbury/rag/`, `semantic_search`, offline model load |
+| `src/rag.py` | Chunk index under `~/.irona/rag/`, `semantic_search`, offline model load |
 | `src/retrieval.py` | **keyword / semantic / hybrid** — shared by chat and `eval/run_eval.py` |
 | `src/intent.py` | Lightweight hints for calendar/web in natural questions |
 | `src/tools.py` | macOS Calendar (AppleScript), DuckDuckGo web search |
@@ -67,7 +67,7 @@ Production uses **hybrid** (`search_hybrid`):
 
 Evaluation runs each mode in isolation — see [EVAL.md](../EVAL.md).
 
-**Index build:** `cadbury index` → reads allowlisted files → chunks (900 chars, overlap 120) → `sentence-transformers` embeddings → JSON in `~/.cadbury/rag/`.
+**Index build:** `irona index` → reads allowlisted files → chunks (900 chars, overlap 120) → `sentence-transformers` embeddings → JSON in `~/.irona/rag/`.
 
 ---
 
@@ -75,9 +75,9 @@ Evaluation runs each mode in isolation — see [EVAL.md](../EVAL.md).
 
 | Path | Purpose |
 |------|---------|
-| `./config.yaml` or `~/.cadbury/config.yaml` | Allowlisted roots, tools, model name |
-| `~/.cadbury/rag/` | Embedding index (not in git) |
-| `~/.cadbury/audit.log` | Prompts, tool grants, results |
+| `./config.yaml` or `~/.irona/config.yaml` | Allowlisted roots, tools, model name |
+| `~/.irona/rag/` | Embedding index (not in git) |
+| `~/.irona/audit.log` | Prompts, tool grants, results |
 
 ---
 
@@ -88,7 +88,7 @@ Evaluation runs each mode in isolation — see [EVAL.md](../EVAL.md).
 | Wrong file in Sources | Keyword “grade” hits syllabus | Hybrid + larger PDF snippets + session file memory |
 | HuggingFace `RemoteProtocolError` | Hub fetch during embed load | `local_files_only=True` when index exists |
 | `web` searches PDFs | Missing `/web` command routing | Top-of-loop `web` / `/web` handler |
-| Eval / CLI hangs | `search_notes` approval prompt | `cadbury eval` bypasses policy (retrieval only) |
+| Eval / CLI hangs | `search_notes` approval prompt | `irona eval` bypasses policy (retrieval only) |
 
 ---
 

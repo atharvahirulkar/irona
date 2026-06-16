@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generation eval: hybrid retrieval + Ollama answer vs gold terms.
 
-Sets CADBURY_AUTO_APPROVE=1 so tools run without prompts.
+Sets IRONA_AUTO_APPROVE=1 so tools run without prompts.
 Requires Ollama running. Slower than retrieval-only eval.
 """
 
@@ -50,7 +50,7 @@ def run_generation_eval(
     strict: bool,
     limit: int | None,
 ) -> dict:
-    os.environ["CADBURY_AUTO_APPROVE"] = "1"
+    os.environ["IRONA_AUTO_APPROVE"] = "1"
     SESSION.grant("search_notes")
 
     subset = questions[:limit] if limit else questions
@@ -95,7 +95,7 @@ def run_generation_eval(
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Cadbury generation evaluation (LLM)")
+    parser = argparse.ArgumentParser(description="Irona generation evaluation (LLM)")
     parser.add_argument("--questions", type=Path, default=None)
     parser.add_argument("--strict", action="store_true", help="Require retrieved context")
     parser.add_argument("--limit", type=int, default=None, help="Max questions to run")
@@ -121,7 +121,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"No questions in {questions_path}")
         return 1
 
-    print(f"Cadbury generation eval — {len(questions)} questions")
+    print(f"Irona generation eval — {len(questions)} questions")
     print(f"Config: {config_label} | strict={args.strict}")
     print("(Requires Ollama — calls LLM per scored question)\n")
 

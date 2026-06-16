@@ -1,18 +1,18 @@
 # Trust model for local personal RAG
 
-When you run a **pre-trained** model locally, weights are frozen — but **behavior** is shaped by what you retrieve, what tools you enable, and what you log. Cadbury treats those as first-class engineering, not add-ons.
+When you run a **pre-trained** model locally, weights are frozen — but **behavior** is shaped by what you retrieve, what tools you enable, and what you log. Irona treats those as first-class engineering, not add-ons.
 
 ---
 
 ## Assets and sensitivity
 
-| Asset | Sensitivity | Cadbury handling |
+| Asset | Sensitivity | Irona handling |
 |-------|-------------|------------------|
 | Allowlisted folders | High (personal/academic) | Config roots only; no traversal outside |
 | Retrieved chunks | High (prompt injection risk) | Passed as context; strict mode can block answer |
 | Calendar events | Medium | Opt-in tool + approval |
 | Web search results | Untrusted external | Labeled in prompt; opt-in + approval |
-| Audit log | High (paths, queries) | `~/.cadbury/audit.log`, not in git |
+| Audit log | High (paths, queries) | `~/.irona/audit.log`, not in git |
 
 ---
 
@@ -26,7 +26,7 @@ When you run a **pre-trained** model locally, weights are frozen — but **behav
 ### 2. Wrong-grounding / hallucination
 
 **Risk:** Model answers without correct file; sounds confident.  
-**Control:** Citations in prompt, `/strict on`, **retrieval eval** (`cadbury eval`).
+**Control:** Citations in prompt, `/strict on`, **retrieval eval** (`irona eval`).
 
 ### 3. Prompt injection via documents
 
@@ -60,4 +60,4 @@ See also [SECURITY.md](../SECURITY.md) for the short policy summary.
 
 Retrieval metrics do not replace security — they show **when grounding fails even before the LLM speaks**. That gap is rarely measured in hobby local-RAG repos.
 
-Run `cadbury eval` after changing chunk size, index, or allowlist paths.
+Run `irona eval` after changing chunk size, index, or allowlist paths.

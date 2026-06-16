@@ -1,4 +1,4 @@
-# Cadbury Security Model
+# Irona Security Model
 
 ## Defaults
 
@@ -6,7 +6,7 @@
 - File access is limited to `allowed_paths` directories only.
 - Optional per-session approval is required before `search_notes` runs.
 - Internet and calendar tools are disabled unless explicitly enabled in config.
-- All tool requests and chat events are appended to `~/.cadbury/audit.log`.
+- All tool requests and chat events are appended to `~/.irona/audit.log`.
 
 ## User controls
 
@@ -23,4 +23,4 @@
 
 Calendar uses macOS Calendar via AppleScript (read-only). Web search uses DuckDuckGo and sends queries over the network. Both require runtime approval when `require_tool_approval` is true.
 
-**WhatsApp (`whatsapp.draft`):** Opens a pre-filled draft in the WhatsApp app via `wa.me` URL. Cadbury does **not** auto-send messages. Optional `whatsapp_allowed_phones` restricts which numbers can be drafted. See [docs/WHATSAPP.md](docs/WHATSAPP.md).
+**WhatsApp (`whatsapp.draft`):** Opens a pre-filled draft in the WhatsApp app via `wa.me` URL. Irona does **not** auto-send messages. Optional `whatsapp_allowed_phones` restricts which numbers can be drafted. See [docs/WHATSAPP.md](docs/WHATSAPP.md).

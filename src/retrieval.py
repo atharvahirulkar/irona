@@ -1,4 +1,4 @@
-"""Retrieval strategies for Cadbury (keyword, semantic, hybrid).
+"""Retrieval strategies for Irona (keyword, semantic, hybrid).
 
 Separated from chat so evaluation and production share the same code paths.
 """

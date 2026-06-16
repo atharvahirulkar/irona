@@ -1,4 +1,4 @@
-# Cadbury evaluation
+# Irona evaluation
 
 Measure **whether the right file is retrieved** (and optionally whether the LLM answers correctly).
 
@@ -11,7 +11,7 @@ Measure **whether the right file is retrieved** (and optionally whether the LLM 
 | `user/questions.jsonl` | **No** | Your gold Q&A tied to **your** `allowed_paths` |
 | `user/corpus/` | **No** (contents) | Optional local docs if config uses `./user/corpus` |
 | `eval/questions.template.jsonl` | Yes | Generic template — copy via `init-user.sh` |
-| `eval/fixtures/corpus/` | Yes | Tiny demo docs for `cadbury eval --demo` only |
+| `eval/fixtures/corpus/` | Yes | Tiny demo docs for `irona eval --demo` only |
 
 Run once: `./scripts/init-user.sh`
 
@@ -24,8 +24,8 @@ Run once: `./scripts/init-user.sh`
 # Edit config.yaml — set allowed_paths to YOUR folder (any path)
 # Edit user/questions.jsonl — expected_sources = YOUR filenames
 
-cadbury index
-cadbury eval
+irona index
+irona eval
 ```
 
 ## Public demo (safe to run after clone)
@@ -33,8 +33,8 @@ cadbury eval
 Uses only committed fixture files — no personal data:
 
 ```bash
-cadbury index   # indexes your config paths; for demo-only:
-cadbury eval --demo
+irona index   # indexes your config paths; for demo-only:
+irona eval --demo
 ```
 
 For `--demo`, corpus is `eval/fixtures/corpus/` (overrides config paths for that run).
@@ -65,11 +65,11 @@ For `--demo`, corpus is `eval/fixtures/corpus/` (overrides config paths for that
 ## Commands
 
 ```bash
-cadbury eval
-cadbury eval --modes keyword,hybrid
-cadbury eval --questions user/questions.jsonl
-cadbury eval --demo
-cadbury eval --generation --limit 5
+irona eval
+irona eval --modes keyword,hybrid
+irona eval --questions user/questions.jsonl
+irona eval --demo
+irona eval --generation --limit 5
 ```
 
 Output: `eval/results/latest.md` (gitignored)
@@ -79,7 +79,7 @@ Output: `eval/results/latest.md` (gitignored)
 ## Generation eval (v0.4)
 
 ```bash
-cadbury eval --generation
+irona eval --generation
 ```
 
 Requires Ollama. Skips questions without `expected_answer_terms` (or `expected_terms` fallback).

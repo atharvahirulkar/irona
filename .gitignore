@@ -27,7 +27,7 @@ PUSH_CHECKLIST.md
 audit.log
 *.log
 
-# Local indexes (stored in ~/.cadbury by default; ignore if copied here)
+# Local indexes (stored in ~/.irona by default; ignore if copied here)
 rag/
 *.index
 

@@ -1,9 +1,9 @@
-# Copy to config.yaml (or ~/.cadbury/config.yaml) and edit paths.
+# Copy to config.yaml (or ~/.irona/config.yaml) and edit paths.
 
 model_name: "qwen2.5:7b-instruct"
 ollama_url: "http://localhost:11434/api/chat"
 
-# Folders Cadbury may search. Use ONE project folder you own — not your whole disk.
+# Folders Irona may search. Use ONE project folder you own — not your whole disk.
 #
 # Option A — documents in repo (contents of user/corpus/ are gitignored):
 #   - "./user/corpus"
@@ -31,7 +31,7 @@ enabled_tools: []
 # whatsapp_allowed_phones:
 #   - "14155551234"
 
-# Semantic search (run `cadbury index` after changing paths).
+# Semantic search (run `irona index` after changing paths).
 use_embeddings: true
 embedding_model: "all-MiniLM-L6-v2"
 

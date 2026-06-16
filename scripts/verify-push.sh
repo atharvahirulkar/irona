@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
-echo "==> Cadbury verify-push"
+echo "==> Irona verify-push"
 fail=0
 
 for f in config.yaml user/questions.jsonl eval/questions.jsonl DEVLOG.private.md PUSH_CHECKLIST.md; do
@@ -46,7 +46,7 @@ fi
 
 echo ""
 if [[ $fail -eq 0 ]]; then
-  echo "==> verify-push passed (run cadbury doctor && cadbury eval --demo before commit)"
+  echo "==> verify-push passed (run irona doctor && irona eval --demo before commit)"
   exit 0
 fi
 echo "==> verify-push FAILED — fix before push"

@@ -1,4 +1,4 @@
-# Your personal Cadbury workspace
+# Your personal Irona workspace
 
 Everything in this folder (except this README) is **yours** and should **not** be committed to git.
 
@@ -30,9 +30,9 @@ allowed_paths:
 After changing paths:
 
 ```bash
-cadbury index
+irona index
 # Edit user/questions.jsonl so expected_sources match filenames in THAT folder
-cadbury eval
+irona eval
 ```
 
 ## Eval questions

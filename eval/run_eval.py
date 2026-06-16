@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Measure Cadbury retrieval quality (keyword vs semantic vs hybrid).
+"""Measure Irona retrieval quality (keyword vs semantic vs hybrid).
 
 Does not call the LLM — only retrieval — so results are fast and reproducible.
 See EVAL.md for how to build your gold question set.
@@ -168,7 +168,7 @@ def _resolve_questions(path: Path | None, *, demo: bool = False) -> Path:
         return LEGACY_QUESTIONS
     raise FileNotFoundError(
         "No personal eval set found. Run ./scripts/init-user.sh "
-        "or cadbury eval --demo for the public fixture benchmark."
+        "or irona eval --demo for the public fixture benchmark."
     )
 
 
@@ -186,7 +186,7 @@ def _markdown_table(summaries: list[dict]) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Cadbury retrieval evaluation")
+    parser = argparse.ArgumentParser(description="Irona retrieval evaluation")
     parser.add_argument(
         "--questions",
         type=Path,
@@ -237,7 +237,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"Unknown mode: {mode}. Choose from: {', '.join(MODES)}")
             return 1
 
-    print(f"Cadbury eval — {len(questions)} questions from {questions_path}")
+    print(f"Irona eval — {len(questions)} questions from {questions_path}")
     print(f"Config: {config_label} | allowlisted roots: {len(allowed_paths)}")
     print()
 
@@ -278,7 +278,7 @@ def main(argv: list[str] | None = None) -> int:
     latest = RESULTS_DIR / "latest.json"
     latest.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     (RESULTS_DIR / "latest.md").write_text(
-        f"# Cadbury eval ({stamp})\n\n{_markdown_table(summaries)}\n",
+        f"# Irona eval ({stamp})\n\n{_markdown_table(summaries)}\n",
         encoding="utf-8",
     )
     print(f"\nWrote {out_path}")

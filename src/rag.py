@@ -18,7 +18,7 @@ from src.notes import (
     terms_from_text,
 )
 
-INDEX_DIR = Path.home() / ".cadbury" / "rag"
+INDEX_DIR = Path.home() / ".irona" / "rag"
 INDEX_META_PATH = INDEX_DIR / "meta.json"
 INDEX_CHUNKS_PATH = INDEX_DIR / "chunks.json"
 
@@ -82,7 +82,7 @@ def _load_model(model_name: str, *, allow_download: bool = True):
     hint = (
         "Model is cached locally but could not be opened."
         if not allow_download
-        else "Run once while online: cadbury index (downloads the embedding model)."
+        else "Run once while online: irona index (downloads the embedding model)."
     )
     raise EmbeddingModelError(
         f"Could not load embedding model '{model_name}'. {hint} "

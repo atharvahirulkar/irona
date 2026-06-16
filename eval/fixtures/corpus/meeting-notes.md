@@ -11,4 +11,4 @@
 ## Action items
 
 - Add gold questions under `user/questions.jsonl`.
-- Run `cadbury index` after changing `allowed_paths`.
+- Run `irona index` after changing `allowed_paths`.

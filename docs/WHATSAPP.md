@@ -1,20 +1,20 @@
-# WhatsApp in Cadbury (draft only)
+# WhatsApp in Irona (draft only)
 
-Cadbury does **not** integrate with WhatsApp’s unofficial APIs. Those break often and violate WhatsApp’s terms for automated sending.
+Irona does **not** integrate with WhatsApp’s unofficial APIs. Those break often and violate WhatsApp’s terms for automated sending.
 
 ## What `whatsapp.draft` does
 
 1. You enable `whatsapp.draft` in `enabled_tools` and approve it (or `/approve all`).
 2. You run:
    ```bash
-   cadbury whatsapp +14155551234 "Running late, see you at 3"
+   irona whatsapp +14155551234 "Running late, see you at 3"
    ```
    Or in interactive mode:
    ```text
    whatsapp +14155551234 "Running late"
    ```
 3. macOS opens **WhatsApp** (or WhatsApp Web) with the message **pre-filled**.
-4. **You tap Send.** Cadbury never sends on your behalf.
+4. **You tap Send.** Irona never sends on your behalf.
 
 ## Optional phone allowlist
 

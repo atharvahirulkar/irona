@@ -4,16 +4,16 @@ install:
 	./install.sh
 
 index:
-	. .venv/bin/activate && cadbury index
+	. .venv/bin/activate && irona index
 
 eval:
-	. .venv/bin/activate && cadbury eval
+	. .venv/bin/activate && irona eval
 
 eval-gen:
-	. .venv/bin/activate && cadbury eval --generation
+	. .venv/bin/activate && irona eval --generation
 
 doctor:
-	. .venv/bin/activate && cadbury doctor
+	. .venv/bin/activate && irona doctor
 
 start:
-	. .venv/bin/activate && cadbury start
+	. .venv/bin/activate && irona start

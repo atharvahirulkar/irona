@@ -2,7 +2,7 @@
 
 Most tutorials stop at: **pull a model → embed files → chat**. That teaches *how to call* an API, not *how to ship* a personal agent on real hardware with real data.
 
-Cadbury exists to close gaps people skip when running **pre-trained models locally**:
+Irona exists to close gaps people skip when running **pre-trained models locally**:
 
 ---
 
@@ -10,7 +10,7 @@ Cadbury exists to close gaps people skip when running **pre-trained models local
 
 Teams ship RAG and assume it works because answers *sound* right. On private PDFs, the failure mode is silent: wrong file ranked first, GPA buried in a 120-character snippet, syllabus chosen instead of a transcript.
 
-**Cadbury response:** `cadbury eval` compares **keyword**, **semantic**, and **hybrid** retrieval on a gold question set you label. Speak with numbers: recall@1, recall@5, MRR — not vibes.
+**Irona response:** `irona eval` compares **keyword**, **semantic**, and **hybrid** retrieval on a gold question set you label. Speak with numbers: recall@1, recall@5, MRR — not vibes.
 
 ---
 
@@ -18,7 +18,7 @@ Teams ship RAG and assume it works because answers *sound* right. On private PDF
 
 Cloud products hide policy in terms of service. Local repos often give the model `os.walk("/")` energy with no audit trail.
 
-**Cadbury response:** `allowed_paths`, `enabled_tools`, session `/approve`, and `~/.cadbury/audit.log`. The interesting engineering is **what the agent is allowed to do before inference**, not the model weights.
+**Irona response:** `allowed_paths`, `enabled_tools`, session `/approve`, and `~/.irona/audit.log`. The interesting engineering is **what the agent is allowed to do before inference**, not the model weights.
 
 ---
 
@@ -26,7 +26,7 @@ Cloud products hide policy in terms of service. Local repos often give the model
 
 A 7B model on 16 GB RAM is not a datacenter GPU. Cold-start embedding downloads, Ollama timeouts, and offline caches matter.
 
-**Cadbury response:** Documented runbook (`cadbury doctor`), offline embedding load (`local_files_only`), and eval latency per retrieval mode — **systems thinking on a laptop**.
+**Irona response:** Documented runbook (`irona doctor`), offline embedding load (`local_files_only`), and eval latency per retrieval mode — **systems thinking on a laptop**.
 
 ---
 
@@ -34,7 +34,7 @@ A 7B model on 16 GB RAM is not a datacenter GPU. Cold-start embedding downloads,
 
 Small models fluently hallucinate when context is thin. Strict mode refuses to answer without retrieved context; citations force paths into the prompt.
 
-**Cadbury response:** Separate **retrieval eval** (reproducible) from **generation eval** (optional, slower). Prove the pipeline finds the right file first; then study when the LLM still drifts.
+**Irona response:** Separate **retrieval eval** (reproducible) from **generation eval** (optional, slower). Prove the pipeline finds the right file first; then study when the LLM still drifts.
 
 ---
 
@@ -42,7 +42,7 @@ Small models fluently hallucinate when context is thin. Strict mode refuses to a
 
 PDFs and web pages are prompt-injection surfaces. “Ignore previous instructions” in a syllabus is a security issue, not a parlor trick.
 
-**Cadbury response:** Threat model in [TRUST.md](TRUST.md), web results labeled untrusted, strict mode for high-stakes answers.
+**Irona response:** Threat model in [TRUST.md](TRUST.md), web results labeled untrusted, strict mode for high-stakes answers.
 
 ---
 

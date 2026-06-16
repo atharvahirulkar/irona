@@ -1,10 +1,10 @@
 # Sample Project
 
-This is **demo content** for Cadbury's public eval template. It is not personal data.
+This is **demo content** for Irona's public eval template. It is not personal data.
 
 ## Overview
 
-Cadbury is a local RAG assistant. This folder exists so `cadbury eval --demo` can run without your private files.
+Irona is a local RAG assistant. This folder exists so `irona eval --demo` can run without your private files.
 
 ## Release
 

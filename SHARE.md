@@ -1,6 +1,6 @@
-# Sharing Cadbury with someone else
+# Sharing Irona with someone else
 
-Each person runs their **own** Cadbury on **their** Mac. No shared cloud account. No shared data.
+Each person runs their **own** Irona on **their** Mac. No shared cloud account. No shared data.
 
 ## What they need
 
@@ -12,8 +12,8 @@ Each person runs their **own** Cadbury on **their** Mac. No shared cloud account
 ## Setup (5 steps)
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/cadbury.git
-cd cadbury
+git clone https://github.com/YOUR_USERNAME/irona.git
+cd irona
 chmod +x install.sh
 ./install.sh
 ```
@@ -30,16 +30,16 @@ allowed_paths:
 
 Edit `user/questions.jsonl` so `expected_sources` match **their** filenames (not the demo template).
 
-Public smoke test (no personal data): `cadbury eval --demo`
+Public smoke test (no personal data): `irona eval --demo`
 
 Then:
 
 ```bash
 source .venv/bin/activate
 ollama pull qwen2.5:7b-instruct
-cadbury index
-cadbury doctor
-cadbury start
+irona index
+irona doctor
+irona start
 ```
 
 Inside chat, run `/approve` or `/approve all` when prompted.
@@ -48,14 +48,14 @@ Inside chat, run `/approve` or `/approve all` when prompted.
 
 | Command | When to use |
 |---------|-------------|
-| `cadbury start` | Always works after install (venv active) |
-| `cadbury` | Same as `cadbury start` |
-| `start cadbury` | Only if `~/.local/bin` is on PATH (install.sh sets this up) |
+| `irona start` | Always works after install (venv active) |
+| `irona` | Same as `irona start` |
+| `start irona` | Only if `~/.local/bin` is on PATH (install.sh sets this up) |
 
 From project folder without global `start`:
 
 ```bash
-./bin/start cadbury
+./bin/start irona
 ```
 
 ## Optional tools (off by default)
@@ -71,15 +71,15 @@ enabled_tools:
 ## What stays private
 
 - `config.yaml` (their paths) — not in git
-- `~/.cadbury/audit.log`
-- `~/.cadbury/rag/` index
+- `~/.irona/audit.log`
+- `~/.irona/rag/` index
 - All local files and prompts
 
 ## Troubleshooting
 
 | Problem | Fix |
 |---------|-----|
-| `cadbury: command not found` | `source .venv/bin/activate` |
-| `start: command not found` | Use `cadbury start` or add `export PATH="$HOME/.local/bin:$PATH"` to `~/.zshrc` |
+| `irona: command not found` | `source .venv/bin/activate` |
+| `start: command not found` | Use `irona start` or add `export PATH="$HOME/.local/bin:$PATH"` to `~/.zshrc` |
 | `search_notes denied` | Set `allowed_paths` to real folders; run `/approve` |
 | Ollama errors | Open Ollama app; run `ollama pull qwen2.5:7b-instruct` |

@@ -4,7 +4,7 @@ set -euo pipefail
 cd "$(dirname "$0")"
 PROJECT_DIR="$PWD"
 
-echo "==> Cadbury installer"
+echo "==> Irona installer"
 
 if ! command -v ollama >/dev/null 2>&1; then
   echo "Ollama is required. Install from https://ollama.com/download"
@@ -36,7 +36,7 @@ else
   fi
 fi
 
-mkdir -p "$HOME/.cadbury"
+mkdir -p "$HOME/.irona"
 chmod +x bin/start
 
 INSTALL_BIN="$HOME/.local/bin"
@@ -48,25 +48,25 @@ if ! ollama list 2>/dev/null | grep -q "qwen2.5:7b-instruct"; then
 fi
 
 echo ""
-echo "Cadbury installed in: $PROJECT_DIR"
+echo "Irona installed in: $PROJECT_DIR"
 echo ""
 echo "Next steps:"
 echo "  1. source .venv/bin/activate"
 echo "  2. Edit config.yaml (allowed_paths — any folder you own)"
 echo "     Edit user/questions.jsonl for eval (filenames in YOUR corpus)"
 echo "  3. ollama pull qwen2.5:7b-instruct   # if not already pulled"
-echo "  4. cadbury index"
-echo "  5. cadbury doctor"
-echo "  6. cadbury start"
+echo "  4. irona index"
+echo "  5. irona doctor"
+echo "  6. irona start"
 echo ""
 echo "Start options:"
-echo "  - cadbury start          (recommended)"
-echo "  - ./bin/start cadbury    (from project folder)"
+echo "  - irona start          (recommended)"
+echo "  - ./bin/start irona    (from project folder)"
 if echo ":$PATH:" | grep -q ":$HOME/.local/bin:"; then
-  echo "  - start cadbury          (available — ~/.local/bin is on PATH)"
+  echo "  - start irona          (available — ~/.local/bin is on PATH)"
 else
-  echo "  - start cadbury          (add to PATH: export PATH=\"\$HOME/.local/bin:\$PATH\")"
+  echo "  - start irona          (add to PATH: export PATH=\"\$HOME/.local/bin:\$PATH\")"
 fi
 echo ""
 
-cadbury doctor || true
+irona doctor || true

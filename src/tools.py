@@ -148,7 +148,7 @@ def run_whatsapp_draft(
     )
     return (
         "Opened WhatsApp with your draft message. "
-        "Review and tap Send yourself — Cadbury does not auto-send messages."
+        "Review and tap Send yourself — Irona does not auto-send messages."
     )
 
 

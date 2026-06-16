@@ -33,14 +33,14 @@ SESSION = SessionPolicy()
 RECENT_SOURCE_FILES: list[str] = []
 
 SYSTEM_PROMPT = (
-    "You are Cadbury, a local assistant running only on this machine. "
+    "You are Irona, a local assistant running only on this machine. "
     "You do NOT have direct access to files, calendar, email, or the internet. "
     "If you need information from those, you must ask the surrounding application to provide it. "
     "When sources are provided, cite them by file path."
 )
 
 INTERACTIVE_HELP = """
-Cadbury commands:
+Irona commands:
   /help          Show this help
   /bye, /exit    Quit
   /notes on|off  Toggle local note retrieval
@@ -50,9 +50,9 @@ Cadbury commands:
   /approve TOOL  Approve one tool (e.g. calendar.read)
   /config        Show loaded config paths
   /doctor        Run health checks
-  /index, index  Rebuild semantic index (not "cadbury index" as chat)
+  /index, index  Rebuild semantic index (not "irona index" as chat)
   /listen        Voice input (voice_enabled + whisper deps)
-  /voice on|off  Speak Cadbury replies aloud (macOS say)
+  /voice on|off  Speak Irona replies aloud (macOS say)
   /calendar      Read macOS Calendar (requires calendar.read in config)
   /web QUERY     Web search (requires web.search in config)
   web QUERY      Same as /web (no leading slash)
@@ -86,11 +86,11 @@ def _parse_whatsapp_command(user_input: str) -> tuple[str, str] | None:
 
 
 def _normalize_slash_command(user_input: str) -> str:
-    """Map `cadbury index` / `index` to slash commands handled in the loop."""
+    """Map `irona index` / `index` to slash commands handled in the loop."""
     stripped = user_input.strip()
     lowered = stripped.lower()
-    if lowered.startswith("cadbury "):
-        lowered = lowered[len("cadbury ") :].strip()
+    if lowered.startswith("irona "):
+        lowered = lowered[len("irona ") :].strip()
     aliases = {
         "index": "/index",
         "doctor": "/doctor",
@@ -439,7 +439,7 @@ def doctor() -> str:
     loaded = _loaded()
     cfg = loaded.config
     lines = [
-        f"Cadbury doctor (v{VERSION})",
+        f"Irona doctor (v{VERSION})",
         f"- model: {cfg.model_name}",
         f"- ollama url: {cfg.ollama_url}",
         f"- config source: {loaded.source_path or 'none'}",
@@ -470,7 +470,7 @@ def run_interactive() -> None:
     strict_mode = loaded.config.strict_mode_default
     notes_enabled = True
 
-    print(f"Cadbury (v{VERSION})")
+    print(f"Irona (v{VERSION})")
     print("Type /help for commands. /bye to quit.")
     if voice_available():
         if loaded.config.voice_enabled:
@@ -497,7 +497,7 @@ def run_interactive() -> None:
         web_query = _parse_web_command(user_input)
         if web_query is not None:
             if not web_query:
-                print("cadbury> usage: /web your search query  (or: web your query)")
+                print("irona> usage: /web your search query  (or: web your query)")
                 continue
             print(run_web(web_query))
             continue
@@ -506,7 +506,7 @@ def run_interactive() -> None:
         if wa_cmd is not None:
             phone, message = wa_cmd
             if not phone or not message:
-                print('cadbury> usage: whatsapp PHONE "message"')
+                print('irona> usage: whatsapp PHONE "message"')
                 continue
             print(run_whatsapp(phone, message))
             continue
@@ -520,19 +520,19 @@ def run_interactive() -> None:
             continue
         if cmd == "/notes on":
             notes_enabled = True
-            print("cadbury> notes retrieval enabled.")
+            print("irona> notes retrieval enabled.")
             continue
         if cmd == "/notes off":
             notes_enabled = False
-            print("cadbury> notes retrieval disabled.")
+            print("irona> notes retrieval disabled.")
             continue
         if cmd == "/strict on":
             strict_mode = True
-            print("cadbury> strict mode enabled.")
+            print("irona> strict mode enabled.")
             continue
         if cmd == "/strict off":
             strict_mode = False
-            print("cadbury> strict mode disabled.")
+            print("irona> strict mode disabled.")
             continue
         if cmd == "/approve all":
             for tool_name in (
@@ -543,18 +543,18 @@ def run_interactive() -> None:
             ):
                 SESSION.grant(tool_name)
             print(
-                "cadbury> search_notes, calendar.read, web.search, "
+                "irona> search_notes, calendar.read, web.search, "
                 "whatsapp.draft approved for this session."
             )
             continue
         if user_input.lower().startswith("/approve "):
             tool_name = user_input.split(maxsplit=1)[1].strip()
             SESSION.grant(tool_name)
-            print(f"cadbury> {tool_name} approved for this session.")
+            print(f"irona> {tool_name} approved for this session.")
             continue
         if cmd == "/approve":
             SESSION.grant("search_notes")
-            print("cadbury> search_notes approved for this session.")
+            print("irona> search_notes approved for this session.")
             continue
         if cmd == "/config":
             print(show_config())
@@ -573,11 +573,11 @@ def run_interactive() -> None:
             user_input = transcript
         elif cmd == "/voice on":
             voice_replies = True
-            print("cadbury> spoken replies enabled.")
+            print("irona> spoken replies enabled.")
             continue
         elif cmd == "/voice off":
             voice_replies = False
-            print("cadbury> spoken replies disabled.")
+            print("irona> spoken replies disabled.")
             continue
         elif cmd == "/calendar":
             print(run_calendar())
@@ -586,7 +586,7 @@ def run_interactive() -> None:
         append_audit("interactive_prompt", user_input)
         response = _respond(user_input, notes_enabled=notes_enabled, strict_mode=strict_mode, history=history)
         append_audit("interactive_response", response)
-        print(f"cadbury> {response}\n")
+        print(f"irona> {response}\n")
         if voice_replies and voice_available():
             speak(response)
 

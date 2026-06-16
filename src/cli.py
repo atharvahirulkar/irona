@@ -9,15 +9,15 @@ from src.version import VERSION
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="cadbury",
-        description="Cadbury — local personal assistant with strict permissions.",
+        prog="irona",
+        description="Irona — local personal assistant with strict permissions.",
     )
     sub = parser.add_subparsers(dest="command")
 
-    sub.add_parser("version", help="Show Cadbury version")
+    sub.add_parser("version", help="Show Irona version")
     sub.add_parser("doctor", help="Run health checks")
     sub.add_parser("config", help="Show loaded configuration")
-    sub.add_parser("start", help="Start Cadbury (interactive chat)")
+    sub.add_parser("start", help="Start Irona (interactive chat)")
     sub.add_parser("interactive", help=argparse.SUPPRESS)  # alias for start
     sub.add_parser("index", help="Build semantic index for allowlisted paths")
     eval_p = sub.add_parser("eval", help="Run retrieval or generation evaluation")
@@ -76,7 +76,7 @@ def main(argv: list[str] | None = None) -> int:
         chat.run_interactive()
         return 0
     if args.command == "version":
-        print(f"cadbury {VERSION}")
+        print(f"irona {VERSION}")
         return 0
     if args.command == "doctor":
         print(chat.doctor())

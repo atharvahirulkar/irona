@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-AUDIT_LOG_PATH = Path.home() / ".cadbury" / "audit.log"
+AUDIT_LOG_PATH = Path.home() / ".irona" / "audit.log"
 
 
 @dataclass(frozen=True)
@@ -82,7 +82,7 @@ def can_use_tool(
 
 def auto_approve_tools() -> bool:
     """Non-interactive runs (eval, CI) skip approval prompts when set."""
-    return os.environ.get("CADBURY_AUTO_APPROVE", "").strip() in {"1", "true", "yes"}
+    return os.environ.get("IRONA_AUTO_APPROVE", "").strip() in {"1", "true", "yes"}
 
 
 def request_tool_approval(tool_name: str, *, interactive: bool = True) -> bool:

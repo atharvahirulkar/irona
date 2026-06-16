@@ -36,7 +36,7 @@ SKIP_DIR_NAMES = frozenset({
     "node_modules",
     "__pycache__",
     "site-packages",
-    ".cadbury",
+    ".irona",
     "dist",
     "build",
     ".egg-info",

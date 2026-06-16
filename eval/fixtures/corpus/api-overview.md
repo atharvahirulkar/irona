@@ -2,15 +2,15 @@
 
 ## Authentication
 
-All requests require a local session token. Tokens are stored in `~/.cadbury/`.
+All requests require a local session token. Tokens are stored in `~/.irona/`.
 
 ## Endpoints
 
 | Command | Description |
 |---------|-------------|
-| `cadbury ask` | Question with optional file retrieval |
-| `cadbury eval` | Retrieval metrics |
-| `cadbury index` | Build embedding index |
+| `irona ask` | Question with optional file retrieval |
+| `irona eval` | Retrieval metrics |
+| `irona index` | Build embedding index |
 
 ## Rate limits
 

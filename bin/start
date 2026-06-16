@@ -1,21 +1,21 @@
 #!/usr/bin/env bash
-# Usage: start cadbury
+# Usage: start irona
 set -euo pipefail
 
-if [[ "${1:-}" != "cadbury" ]]; then
-  echo "Usage: start cadbury"
+if [[ "${1:-}" != "irona" ]]; then
+  echo "Usage: start irona"
   exit 1
 fi
 
-CADBURY_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-cd "$CADBURY_ROOT"
+IRONA_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$IRONA_ROOT"
 
 if [[ ! -d ".venv" ]]; then
-  echo "Cadbury venv missing. Run ./install.sh first."
+  echo "Irona venv missing. Run ./install.sh first."
   exit 1
 fi
 
 # shellcheck disable=SC1091
 source ".venv/bin/activate"
 shift
-exec cadbury start "$@"
+exec irona start "$@"

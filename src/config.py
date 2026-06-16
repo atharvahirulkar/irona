@@ -8,7 +8,7 @@ import yaml
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_CONFIG_PATHS = [
-    Path.home() / ".cadbury" / "config.yaml",
+    Path.home() / ".irona" / "config.yaml",
     PROJECT_ROOT / "config.yaml",
 ]
 
@@ -17,7 +17,7 @@ DEFAULT_OLLAMA_URL = "http://localhost:11434/api/chat"
 
 
 @dataclass(frozen=True)
-class CadburyConfig:
+class IronaConfig:
     model_name: str
     ollama_url: str
     allowed_paths: list[Path]
@@ -34,7 +34,7 @@ class CadburyConfig:
 
 @dataclass(frozen=True)
 class LoadedConfig:
-    config: CadburyConfig
+    config: IronaConfig
     source_path: Path | None
 
 
@@ -53,7 +53,7 @@ def _coerce_paths(raw_paths: list[Any]) -> list[Path]:
     return paths
 
 
-def _parse_config(data: dict[str, Any]) -> CadburyConfig:
+def _parse_config(data: dict[str, Any]) -> IronaConfig:
     raw_paths = data.get("allowed_paths")
     if raw_paths is None:
         raw_paths = data.get("allowed_notes_paths", [])  # legacy key
@@ -73,7 +73,7 @@ def _parse_config(data: dict[str, Any]) -> CadburyConfig:
     )
     whatsapp_allowed_phones = frozenset(p for p in whatsapp_allowed_phones if p)
 
-    return CadburyConfig(
+    return IronaConfig(
         model_name=str(data.get("model_name", DEFAULT_MODEL)),
         ollama_url=str(data.get("ollama_url", DEFAULT_OLLAMA_URL)),
         allowed_paths=_coerce_paths(raw_paths),
@@ -104,5 +104,5 @@ def load_config_with_source() -> LoadedConfig:
     return LoadedConfig(config=_parse_config(data), source_path=source_path)
 
 
-def load_config() -> CadburyConfig:
+def load_config() -> IronaConfig:
     return load_config_with_source().config
