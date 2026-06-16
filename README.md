@@ -1,8 +1,8 @@
 # Irona
 
-> *Named after Irona — the robot housekeeper from Richie Rich who could do whatever was asked. This is the same idea, just permissioned and auditable: ask it anything, but it only acts within boundaries you set.*
+> *Named after Irona - the robot housekeeper from Richie Rich who could do whatever was asked. This is the same idea, just permissioned and auditable: ask it anything, but it only acts within boundaries you set.*
 
-**Irona** is a **permissioned, auditable RAG agent** for macOS: local inference (Ollama), measured retrieval over allowlisted files, and an explicit policy layer. It is a learning lab for LLMs, RAG, and edge ML infrastructure—not a cloud chatbot clone.
+**Irona** is a **permissioned, auditable RAG agent** for macOS: local inference (Ollama), measured retrieval over allowlisted files, and an explicit policy layer. It is a learning lab for LLMs, RAG, and edge ML infrastructure-not a cloud chatbot clone.
 
 > **Thesis:** Most local-RAG tutorials stop at "it answers." Irona measures **whether the right file is retrieved**, logs **what tools ran**, and documents **what breaks on 16GB RAM** with pre-trained models. See [docs/THE_LOCAL_GAP.md](docs/THE_LOCAL_GAP.md).
 
@@ -32,19 +32,19 @@ Irona is for people who want **control and privacy** first, and are fine trading
 Frontier cloud assistants are excellent at general reasoning, writing, and coding. This project is **not** trying to beat them on a leaderboard. It exists because they solve a **different problem** than the one I cared about.
 
 **1. Learning how assistants actually work**  
-Using ChatGPT is like driving a car. Building Irona is like opening the hood: local inference (Ollama), retrieval, tool permissions, audit logs, and config-driven boundaries. That exposure is the main goal—not shipping a commercial competitor.
+Using ChatGPT is like driving a car. Building Irona is like opening the hood: local inference (Ollama), retrieval, tool permissions, audit logs, and config-driven boundaries. That exposure is the main goal-not shipping a commercial competitor.
 
 **2. Privacy for real personal data**  
 Course folders, transcripts, work notes, and drafts are sensitive. With Irona, prompts and retrieved file text stay on **my Mac** by default. Cloud tools can be careful with policy, but I cannot **see or change** their enforcement code. Here I can.
 
 **3. Permissions I can enforce in code**  
-I wanted rules that are explicit and boring: only certain folders, approval before search, an audit trail, no silent web or calendar access. Irona's policy layer is small on purpose—it is the product.
+I wanted rules that are explicit and boring: only certain folders, approval before search, an audit trail, no silent web or calendar access. Irona's policy layer is small on purpose-it is the product.
 
 **4. A buddy I own and can share safely**  
 Colleagues can clone the repo, run their own Ollama model, and use **their** allowlisted paths. No shared cloud account, no commingled data.
 
 **5. Honest tradeoff**  
-Irona uses a ~7B local model, so it will not match Claude or GPT-4 on hard tasks. That is acceptable: the value is **control, citations from local files, and learning**—not replacing every cloud agent.
+Irona uses a ~7B local model, so it will not match Claude or GPT-4 on hard tasks. That is acceptable: the value is **control, citations from local files, and learning**-not replacing every cloud agent.
 
 **When I still use cloud AI:** open-ended research, heavy coding reviews, or tasks where maximum model quality matters. Irona and cloud tools can coexist.
 
@@ -329,25 +329,13 @@ Before push: [PUSH_CHECKLIST.example.md](PUSH_CHECKLIST.example.md) or `./script
 ./scripts/verify-push.sh
 ```
 
-Use `config.example.yaml` with placeholder paths only—never your real directories.
-
----
-
-## Roadmap
-
-- [x] v0.1 - Local chat, allowlisted search, policy, audit, interactive CLI  
-- [x] v0.2 - Semantic index (`irona index`), calendar/web opt-in  
-- [x] v0.3 - Retrieval eval harness, architecture/trust docs, `src/retrieval.py`  
-- [x] v0.4 - Generation eval (`irona eval --generation`), WhatsApp draft, voice UX  
-- [ ] Auto-send messaging (intentionally not planned — see WHATSAPP.md)  
-- [ ] Incremental index rebuild  
-- [ ] macOS menu-bar app (future)  
+Use `config.example.yaml` with placeholder paths only-never your real directories.
 
 ---
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT - see [LICENSE](LICENSE).
 
 ---
 
@@ -355,5 +343,5 @@ MIT — see [LICENSE](LICENSE).
 
 Built as a learning project for local LLMs, retrieval, and permission-safe agents.
 
-**Atharva Hirulkar** — MS Data Science, UC San Diego  
+**Atharva Hirulkar** - MS Data Science, UC San Diego  
 [GitHub](https://github.com/atharvahirulkar) · [LinkedIn](https://linkedin.com/in/atharva-hirulkar)
